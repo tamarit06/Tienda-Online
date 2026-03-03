@@ -1,38 +1,16 @@
-const productos = [
-    { id: 1, nombre: "Vestido tope verde", precio: 3600, imagen: "images/vestido tope verde.jpg" },
-    { id: 2, nombre: "Vestido tope rosado", precio: 3600, imagen: "images/vestido tope rosado.jpg" },
-    { id: 3, nombre: "Enguatada", precio: 1500, imagen: "images/enguatada.jpg" }
-];
-
 let carrito = [];
 
-function cargarCatalogo() {
-    const contenedor = document.getElementById('contenedor-productos');
-    contenedor.innerHTML = "";
-    
-    productos.forEach(prod => {
-        const tarjeta = document.createElement('div');
-        tarjeta.classList.add('producto');
-        tarjeta.innerHTML = `
-            <img src="${prod.imagen}" alt="${prod.nombre}">
-            <h2>${prod.nombre}</h2>
-            <p class="precio">$${prod.precio}</p>
-            <button onclick="agregarAlCarrito(${prod.id})" class="btn-add">Añadir al carrito</button>
-        `;
-        contenedor.appendChild(tarjeta);
-    });
-}
+function agregarAlCarrito(boton) {
+    const nombre = boton.dataset.nombre;
+    const precio = parseFloat(boton.dataset.precio);
 
-function agregarAlCarrito(id) {
-    const producto = productos.find(p => p.id === id);
+    const producto = { nombre: nombre, precio: precio };
     carrito.push(producto);
-    
-    actualizarInterfazCarrito();
-    
-// Llamamos a la notificación
-    mostrarAviso(`✅ ${producto.nombre} añadido`);
-}
 
+    actualizarInterfazCarrito();
+    mostrarAviso(`✅ ${nombre} añadido`);
+    console.log("Botón clickeado");
+}
 function actualizarInterfazCarrito() {
     const contenedorItems = document.getElementById('items-carrito');
     const contador = document.getElementById('contador-carrito');
@@ -112,4 +90,3 @@ function mostrarAviso(mensaje) {
         aviso.classList.remove('notificacion-visible');
     }, 2000);
 }
-cargarCatalogo();
