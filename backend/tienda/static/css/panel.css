@@ -1,0 +1,81 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f5f5f5;
+    margin:0;
+}
+
+.container{
+    width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logout{
+    text-decoration:none;
+    color:white;
+    background:#ff4d4d;
+    padding:8px 14px;
+    border-radius:6px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:10px;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+}
+
+.btn{
+    margin-top:10px;
+    padding:10px 15px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#45a049;
+}
+
+.lista-productos{
+    list-style:none;
+    padding:0;
+}
+
+.producto{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px;
+    border-bottom:1px solid #ddd;
+}
+
+.acciones a{
+    text-decoration:none;
+    margin-left:10px;
+}
+
+.editar{
+    color:#007bff;
+}
+
+.eliminar{
+    color:#ff3333;
+}

@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Panel de administración</title>
+
+<link rel="stylesheet" href="{% static 'css/panel.css' %}">
+<script src="{% static 'js/panel.js' %}" defer></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header class="header">
+    <h1>Panel de Administración</h1>
+    <a class="logout" href="{% url 'logout_panel' %}">Cerrar sesión</a>
+</header>
+
+
+<section class="card">
+
+<h2>
+{% if editando %}
+Editar Producto
+{% else %}
+Agregar Producto
+{% endif %}
+</h2>
+
+<form method="post" enctype="multipart/form-data" class="formulario">
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button class="btn" name="guardar_producto">
+{% if editando %}
+Guardar cambios
+{% else %}
+Subir producto
+{% endif %}
+</button>
+
+</form>
+
+</section>
+
+
+<section class="card">
+
+<h2>Productos existentes</h2>
+
+<ul class="lista-productos">
+
+{% for producto in productos %}
+
+<li class="producto">
+
+<div class="info">
+<strong>{{ producto.nombre }}</strong>
+<span>${{ producto.precio }}</span>
+</div>
+
+<div class="acciones">
+
+<a class="editar"
+href="{% url 'panel' %}?editar={{ producto.id }}">
+Editar
+</a>
+
+<a class="eliminar"
+href="{% url 'eliminar_producto' producto.id %}">
+Eliminar
+</a>
+
+</div>
+
+</li>
+
+{% empty %}
+
+<li>No hay productos aún.</li>
+
+{% endfor %}
+
+</ul>
+
+</section>
+
+
+<section class="card">
+
+<h2>Configuración de la tienda</h2>
+
+<form method="post" class="formulario">
+
+{% csrf_token %}
+
+{{ config_form.as_p }}
+
+<button class="btn" name="guardar_config">
+Guardar Configuración
+</button>
+
+</form>
+
+</section>
+
+
+</div>
+
+</body>
+</html>

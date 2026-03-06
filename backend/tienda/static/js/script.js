@@ -49,8 +49,7 @@ function vaciarCarrito() {
     carrito = [];
     actualizarInterfazCarrito();
 }
-// Asegúrate de tener tu número aquí (sin el +)
-const miTelefono = "5359150133"; 
+
 
 function enviarPedido() {
     if (carrito.length === 0) {
@@ -73,7 +72,7 @@ function enviarPedido() {
     const mensajeCodificado = encodeURIComponent(texto);
     
     // 3. Creamos el enlace final
-    const enlaceWhatsApp = `https://wa.me/${miTelefono}?text=${mensajeCodificado}`;
+    const enlaceWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensajeCodificado}`;
 
     // 4. Abrimos WhatsApp en una nueva pestaña
     window.open(enlaceWhatsApp, '_blank');

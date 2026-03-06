@@ -6,7 +6,7 @@
     <title>Mi Catálogo</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<script src="{% static 'js/script.js' %}"></script>
+
 <body>
 
 <header class="header">
@@ -16,7 +16,6 @@
 <main class="catalogo">
     {% for producto in productos %}
         <div class="producto">
-
             {% if producto.imagen %}
                 <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
             {% endif %}
@@ -26,33 +25,42 @@
             <p class="precio">$ {{ producto.precio }}</p>
 
             <button 
-    onclick="agregarAlCarrito(this)"
-    data-nombre="{{ producto.nombre }}"
-    data-precio="{{ producto.precio }}"
-    class="btn-add">
-    Añadir al carrito
-</button>
+                onclick="agregarAlCarrito(this)"
+                data-nombre="{{ producto.nombre }}"
+                data-precio="{{ producto.precio }}"
+                class="btn-add">
+                Añadir al carrito
+            </button>
         </div>
     {% endfor %}
 </main>
 
-<!-- Botón flotante del carrito -->
 <div id="ver-carrito-btn" onclick="toggleCarrito()">
     🛒 <span id="contador-carrito">0</span>
 </div>
 
-<!-- Carrito lateral -->
 <aside id="carrito-lateral">
     <h2>Tu Carrito</h2>
     <div id="items-carrito"></div>
     <div>Total: $<span id="precio-total">0.00</span></div>
 
     <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar</button>
-    <button class="btn-comprar" onclick="enviarPedido()">Finalizar Pedido</button>
+    <button class="btn-comprar" onclick=
+    "enviarPedido()">Finalizar Pedido</button>
 </aside>
 
 <div id="notificacion"></div>
 
+<!-- DEBUG -->
+<p>DEBUG: {{ config.whatsapp }}</p>
+
+<!-- Primero definimos la variable -->
+<script>
+    const numeroWhatsApp = "{{ config.whatsapp }}";
+    console.log("Número actual:", numeroWhatsApp);
+</script>
+
+<!-- Luego cargamos el JS UNA sola vez -->
 <script src="{% static 'js/script.js' %}"></script>
 
 </body>

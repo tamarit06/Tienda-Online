@@ -8,3 +8,11 @@ class Producto(models.Model):
 
     def __str__(self):
         return self.nombre
+
+
+class Configuracion(models.Model):
+    nombre_tienda = models.CharField(max_length=200)
+    whatsapp = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.nombre_tienda
